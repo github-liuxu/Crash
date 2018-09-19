@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -43,6 +43,10 @@
         <scene sceneID="Fbd-6v-oms">
             <objects>
                 <viewController storyboardIdentifier="CrashTextViewController" id="HAn-oh-8uA" customClass="CrashTextViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="b8E-pQ-bkI"/>
+                        <viewControllerLayoutGuide type="bottom" id="Fvi-PJ-yh2"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="lDx-Rh-anf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -50,19 +54,18 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ZeX-mG-Qxg">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="ZeX-mG-Qxg" firstAttribute="bottom" secondItem="XAh-m7-9ZT" secondAttribute="bottom" id="F4Q-eN-GIu"/>
-                            <constraint firstItem="ZeX-mG-Qxg" firstAttribute="trailing" secondItem="XAh-m7-9ZT" secondAttribute="trailing" id="Y5p-rC-vlW"/>
-                            <constraint firstItem="ZeX-mG-Qxg" firstAttribute="top" secondItem="XAh-m7-9ZT" secondAttribute="top" id="dpO-qH-9tQ"/>
-                            <constraint firstItem="ZeX-mG-Qxg" firstAttribute="leading" secondItem="XAh-m7-9ZT" secondAttribute="leading" id="tpg-0F-zpT"/>
+                            <constraint firstItem="ZeX-mG-Qxg" firstAttribute="bottom" secondItem="Fvi-PJ-yh2" secondAttribute="top" id="F4Q-eN-GIu"/>
+                            <constraint firstItem="ZeX-mG-Qxg" firstAttribute="trailing" secondItem="lDx-Rh-anf" secondAttribute="trailing" id="Y5p-rC-vlW"/>
+                            <constraint firstItem="ZeX-mG-Qxg" firstAttribute="top" secondItem="b8E-pQ-bkI" secondAttribute="bottom" id="dpO-qH-9tQ"/>
+                            <constraint firstItem="ZeX-mG-Qxg" firstAttribute="leading" secondItem="lDx-Rh-anf" secondAttribute="leading" id="tpg-0F-zpT"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="XAh-m7-9ZT"/>
                     </view>
                     <navigationItem key="navigationItem" id="vt3-wU-BMs"/>
                     <connections>

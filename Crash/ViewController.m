@@ -33,9 +33,14 @@
     [super touchesBegan:touches withEvent:event];
     UIStoryboard *st = [UIStoryboard storyboardWithName:@"CrashStoryboard" bundle:[NSBundle bundleForClass:self.class]];
     CrashListViewController *listVC = [st instantiateViewControllerWithIdentifier:@"CrashListViewController"];
+    listVC.delegate = self;
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:listVC];
     
     [self presentViewController:nav animated:YES completion:NULL];
+}
+
+- (void)backClick {
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 

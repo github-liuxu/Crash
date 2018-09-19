@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol CrashListViewControllerDelegate
+
+- (void)backClick;
+
+@end
+
 @interface CrashListViewController : UITableViewController
+
+@property (nonatomic, weak) id delegate;
 
 @end

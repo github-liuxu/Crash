@@ -13,6 +13,8 @@
 
 @property (nonatomic, strong)NSMutableArray *dataSource;
 
+@property (nonatomic, strong) UIButton *backButton;
+
 @end
 
 @implementation CrashListViewController
@@ -20,6 +22,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.title = @"崩溃列表";
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[self leftNavigationBarItemView]];
     self.dataSource = [NSMutableArray array];
     NSString *document = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     NSString *crashPath = [document stringByAppendingPathComponent:@"CrashHandler"];
@@ -31,6 +35,21 @@
     NSEnumerator *enumerator = [self.dataSource reverseObjectEnumerator];
     self.dataSource = [NSMutableArray arrayWithArray:enumerator.allObjects];
     [self.tableView reloadData];
+}
+
+- (UIView *)leftNavigationBarItemView {
+    self.backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.backButton setTitle:@"返回" forState:UIControlStateNormal];
+    [self.backButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    self.backButton.frame = CGRectMake(0, 0, 44, 44);
+    [self.backButton addTarget:self action:@selector(leftNavButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    return self.backButton;
+}
+
+- (void)leftNavButtonClick:(UIButton *)button {
+    if ([self.delegate respondsToSelector:@selector(backClick)]) {
+        [self.delegate backClick];
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
