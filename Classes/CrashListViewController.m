@@ -8,12 +8,15 @@
 
 #import "CrashListViewController.h"
 #import "CrashTextViewController.h"
+@import MessageUI;
 
-@interface CrashListViewController ()
+@interface CrashListViewController ()<MFMailComposeViewControllerDelegate,UIAppearance>
 
 @property (nonatomic, strong)NSMutableArray *dataSource;
 
 @property (nonatomic, strong) UIButton *backButton;
+
+@property (nonatomic, strong) UIButton *emailButton;
 
 @end
 
@@ -24,6 +27,7 @@
     // Do any additional setup after loading the view.
     self.title = @"崩溃列表";
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[self leftNavigationBarItemView]];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[self rightNavigationBarItemView]];
     self.dataSource = [NSMutableArray array];
     NSString *document = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     NSString *crashPath = [document stringByAppendingPathComponent:@"CrashHandler"];
@@ -37,6 +41,15 @@
     [self.tableView reloadData];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if ([MFMailComposeViewController canSendMail]) {
+        self.emailButton.enabled = YES;
+    } else {
+        self.emailButton.enabled = NO;
+    }
+}
+
 - (UIView *)leftNavigationBarItemView {
     self.backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.backButton setTitle:@"返回" forState:UIControlStateNormal];
@@ -46,10 +59,38 @@
     return self.backButton;
 }
 
+- (UIView *)rightNavigationBarItemView {
+    self.emailButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.emailButton setTitle:@"Email" forState:UIControlStateNormal];
+    [self.emailButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    self.emailButton.frame = CGRectMake(0, 0, 44, 44);
+    [self.emailButton addTarget:self action:@selector(rightNavButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    return self.emailButton;
+}
+
 - (void)leftNavButtonClick:(UIButton *)button {
     if ([self.delegate respondsToSelector:@selector(backClick)]) {
         [self.delegate backClick];
     }
+}
+
+- (void)rightNavButtonClick:(UIButton *)button {
+    [self dismissViewControllerAnimated:YES completion:^{
+        MFMailComposeViewController *mfMail = [MFMailComposeViewController new];
+        mfMail.mailComposeDelegate = [UIApplication sharedApplication].keyWindow.rootViewController;
+        if (self.emailAddress) {
+            [mfMail setToRecipients:@[self.emailAddress]];
+        }
+        
+        [mfMail setSubject:@"Crash"];
+        [mfMail setMessageBody:@"Hello send the bugs email to me!" isHTML:NO];
+        
+        NSData *log = [NSData dataWithContentsOfFile:self.dataSource.firstObject];
+        [mfMail addAttachmentData:log mimeType:@"log" fileName:@"logfile"];
+        // Present the view controller modally.
+        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:mfMail animated:YES completion:NULL];
+    }];
+    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -67,6 +108,11 @@
     CrashTextViewController *ct = [st instantiateViewControllerWithIdentifier:@"CrashTextViewController"];
     ct.crashPath = self.dataSource[indexPath.row];
     [self.navigationController pushViewController:ct animated:YES];
+}
+
+#pragma - mark MFMailComposeViewControllerDelegate
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(nullable NSError *)error {
+    [controller dismissViewControllerAnimated:YES completion:NULL];
 }
 
 - (void)didReceiveMemoryWarning {

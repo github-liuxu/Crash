@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "CrashListViewController.h"
+@import MessageUI;
 
 @interface ViewController ()
 
@@ -27,6 +28,7 @@
 //    NSLog(@"%d",b);
 //    NSString *a = self.arrayP[0];
 //    NSLog(@"%@",a);
+    
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
@@ -34,13 +36,19 @@
     UIStoryboard *st = [UIStoryboard storyboardWithName:@"CrashStoryboard" bundle:[NSBundle bundleForClass:self.class]];
     CrashListViewController *listVC = [st instantiateViewControllerWithIdentifier:@"CrashListViewController"];
     listVC.delegate = self;
+    listVC.emailAddress = @"liu_dongxu@cdv.com";
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:listVC];
-    
+
     [self presentViewController:nav animated:YES completion:NULL];
 }
 
 - (void)backClick {
     [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+#pragma - mark MFMailComposeViewControllerDelegate
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(nullable NSError *)error {
+    [controller dismissViewControllerAnimated:YES completion:NULL];
 }
 
 

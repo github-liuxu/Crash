@@ -18,4 +18,6 @@
 
 @property (nonatomic, weak) id delegate;
 
+@property (nonatomic, strong) NSString *emailAddress;
+
 @end
