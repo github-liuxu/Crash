@@ -42,12 +42,6 @@
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
-#pragma - mark MFMailComposeViewControllerDelegate
-- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(nullable NSError *)error {
-    [controller dismissViewControllerAnimated:YES completion:NULL];
-}
-
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

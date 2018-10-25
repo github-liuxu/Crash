@@ -10,7 +10,7 @@
 #import "CrashTextViewController.h"
 @import MessageUI;
 
-@interface CrashListViewController ()<MFMailComposeViewControllerDelegate,UIAppearance>
+@interface CrashListViewController ()<MFMailComposeViewControllerDelegate,MFMailComposeViewControllerDelegate>
 
 @property (nonatomic, strong)NSMutableArray *dataSource;
 
