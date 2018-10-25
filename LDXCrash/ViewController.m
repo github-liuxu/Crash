@@ -21,24 +21,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    self.arrayP = @[];
-//    int j = 0;
-//    int i = 1;
-//    int b = i/j;
-//    NSLog(@"%d",b);
-//    NSString *a = self.arrayP[0];
-//    NSLog(@"%@",a);
     
 }
-
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    [super touchesBegan:touches withEvent:event];
+- (IBAction)crash:(id)sender {
+    self.arrayP = @[];
+    NSString *a = self.arrayP[0];
+    NSLog(@"%@",a);
+}
+- (IBAction)show:(id)sender {
     UIStoryboard *st = [UIStoryboard storyboardWithName:@"CrashStoryboard" bundle:[NSBundle bundleForClass:self.class]];
     CrashListViewController *listVC = [st instantiateViewControllerWithIdentifier:@"CrashListViewController"];
     listVC.delegate = self;
-    listVC.emailAddress = @"liu_dongxu@cdv.com";
+//    listVC.emailAddress = @"xxxxx@xxx.com";
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:listVC];
-
+    
     [self presentViewController:nav animated:YES completion:NULL];
 }
 
