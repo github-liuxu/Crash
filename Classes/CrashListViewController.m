@@ -12,7 +12,8 @@
 
 @interface CrashListViewController ()<MFMailComposeViewControllerDelegate,MFMailComposeViewControllerDelegate>
 
-@property (nonatomic, strong)NSMutableArray *dataSource;
+//@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) NSMutableArray *dataSource;
 
 @property (nonatomic, strong) UIButton *backButton;
 
@@ -28,6 +29,9 @@
     self.title = @"崩溃列表";
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[self leftNavigationBarItemView]];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[self rightNavigationBarItemView]];
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"CrashCell"];
     self.dataSource = [NSMutableArray array];
     NSString *document = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     NSString *crashPath = [document stringByAppendingPathComponent:@"CrashHandler"];
@@ -103,8 +107,7 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    UIStoryboard *st = [UIStoryboard storyboardWithName:@"CrashStoryboard" bundle:[NSBundle bundleForClass:self.class]];
-    CrashTextViewController *ct = [st instantiateViewControllerWithIdentifier:@"CrashTextViewController"];
+    CrashTextViewController *ct = [CrashTextViewController new];
     ct.crashPath = self.dataSource[indexPath.row];
     [self.navigationController pushViewController:ct animated:YES];
 }

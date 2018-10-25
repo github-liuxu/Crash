@@ -29,8 +29,7 @@
     NSLog(@"%@",a);
 }
 - (IBAction)show:(id)sender {
-    UIStoryboard *st = [UIStoryboard storyboardWithName:@"CrashStoryboard" bundle:[NSBundle bundleForClass:self.class]];
-    CrashListViewController *listVC = [st instantiateViewControllerWithIdentifier:@"CrashListViewController"];
+    CrashListViewController *listVC = [CrashListViewController new];
     listVC.delegate = self;
 //    listVC.emailAddress = @"xxxxx@xxx.com";
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:listVC];

@@ -9,7 +9,7 @@
 #import "CrashTextViewController.h"
 
 @interface CrashTextViewController ()
-@property (weak, nonatomic) IBOutlet UITextView *textView;
+@property (strong, nonatomic) UITextView *textView;
 
 @end
 
@@ -18,6 +18,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.textView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    [self.view addSubview:self.textView];
     NSString *text = [NSString stringWithContentsOfFile:self.crashPath encoding:NSUTF8StringEncoding error:nil];
     self.textView.text = text;
 }

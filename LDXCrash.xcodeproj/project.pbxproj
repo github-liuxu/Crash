@@ -14,7 +14,6 @@
 		0C36264920A489EF0011CBA8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C36264720A489EF0011CBA8 /* LaunchScreen.storyboard */; };
 		0C36264C20A489EF0011CBA8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C36264B20A489EF0011CBA8 /* main.m */; };
 		0C36265720A48A130011CBA8 /* CrashUncaughtExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C36265520A48A130011CBA8 /* CrashUncaughtExceptionHandler.m */; };
-		0C36265920A4A6610011CBA8 /* CrashStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C36265820A4A6610011CBA8 /* CrashStoryboard.storyboard */; };
 		0C36265C20A4A7170011CBA8 /* CrashListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C36265B20A4A7170011CBA8 /* CrashListViewController.m */; };
 		0C36265F20A4AC9F0011CBA8 /* CrashTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C36265E20A4AC9F0011CBA8 /* CrashTextViewController.m */; };
 /* End PBXBuildFile section */
@@ -32,7 +31,6 @@
 		0C36264B20A489EF0011CBA8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0C36265520A48A130011CBA8 /* CrashUncaughtExceptionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrashUncaughtExceptionHandler.m; sourceTree = "<group>"; };
 		0C36265620A48A130011CBA8 /* CrashUncaughtExceptionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrashUncaughtExceptionHandler.h; sourceTree = "<group>"; };
-		0C36265820A4A6610011CBA8 /* CrashStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CrashStoryboard.storyboard; sourceTree = "<group>"; };
 		0C36265A20A4A7170011CBA8 /* CrashListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CrashListViewController.h; sourceTree = "<group>"; };
 		0C36265B20A4A7170011CBA8 /* CrashListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CrashListViewController.m; sourceTree = "<group>"; };
 		0C36265D20A4AC9F0011CBA8 /* CrashTextViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CrashTextViewController.h; sourceTree = "<group>"; };
@@ -88,7 +86,6 @@
 			children = (
 				0C36265520A48A130011CBA8 /* CrashUncaughtExceptionHandler.m */,
 				0C36265620A48A130011CBA8 /* CrashUncaughtExceptionHandler.h */,
-				0C36265820A4A6610011CBA8 /* CrashStoryboard.storyboard */,
 				0C36265D20A4AC9F0011CBA8 /* CrashTextViewController.h */,
 				0C36265E20A4AC9F0011CBA8 /* CrashTextViewController.m */,
 				0C36265A20A4A7170011CBA8 /* CrashListViewController.h */,
@@ -157,7 +154,6 @@
 				0C36264920A489EF0011CBA8 /* LaunchScreen.storyboard in Resources */,
 				0C36264620A489EF0011CBA8 /* Assets.xcassets in Resources */,
 				0C36264420A489EE0011CBA8 /* Main.storyboard in Resources */,
-				0C36265920A4A6610011CBA8 /* CrashStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
