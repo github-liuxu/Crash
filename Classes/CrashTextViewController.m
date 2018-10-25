@@ -22,6 +22,7 @@
     [self.view addSubview:self.textView];
     NSString *text = [NSString stringWithContentsOfFile:self.crashPath encoding:NSUTF8StringEncoding error:nil];
     self.textView.text = text;
+    self.textView.editable = NO;
 }
 
 - (void)didReceiveMemoryWarning {

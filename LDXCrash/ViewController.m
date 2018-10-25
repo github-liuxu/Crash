@@ -8,7 +8,6 @@
 
 #import "ViewController.h"
 #import "CrashListViewController.h"
-@import MessageUI;
 
 @interface ViewController ()
 
