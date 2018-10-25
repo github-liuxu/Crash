@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "LDXCrash"
-  s.version      = "0.0.1"
+  s.version      = "0.0.2"
   s.summary      = "崩溃日志查看."
 
   # This description is used to generate tags and improve search results.
