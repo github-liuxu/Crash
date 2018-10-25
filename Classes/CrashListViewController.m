@@ -12,7 +12,6 @@
 
 @interface CrashListViewController ()<MFMailComposeViewControllerDelegate,MFMailComposeViewControllerDelegate>
 
-//@property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataSource;
 
 @property (nonatomic, strong) UIButton *backButton;
@@ -121,7 +120,7 @@
     return UITableViewCellEditingStyleDelete;
 }
 
-// 进入编辑模式，按下出现的编辑按钮后,进行删除操作
+// 进行删除操作
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         NSFileManager *fm = [NSFileManager defaultManager];
