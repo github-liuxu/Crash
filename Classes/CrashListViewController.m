@@ -84,10 +84,12 @@
         [mfMail setToRecipients:@[self.emailAddress]];
     }
     [mfMail setSubject:@"Crash"];
-    [mfMail setMessageBody:[NSString stringWithContentsOfFile:self.dataSource.firstObject encoding:NSUTF8StringEncoding error:nil] isHTML:NO];
+    [mfMail setMessageBody:@"Bug files!" isHTML:NO];
     
-    NSData *log = [NSData dataWithContentsOfFile:self.dataSource.firstObject];
-    [mfMail addAttachmentData:log mimeType:@"log" fileName:[self.dataSource.firstObject lastPathComponent]];
+    for (int i = 0; i < self.dataSource.count; i++) {
+        NSData *log = [NSData dataWithContentsOfFile:self.dataSource[i]];
+        [mfMail addAttachmentData:log mimeType:@"log" fileName:[self.dataSource[i] lastPathComponent]];
+    }
     
     self.definesPresentationContext = YES;
     self.modalPresentationStyle = UIModalPresentationOverCurrentContext;
@@ -108,6 +110,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     CrashTextViewController *ct = [CrashTextViewController new];
     ct.crashPath = self.dataSource[indexPath.row];
+    ct.emailAddress = self.emailAddress;
     [self.navigationController pushViewController:ct animated:YES];
 }
 

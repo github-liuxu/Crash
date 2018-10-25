@@ -12,4 +12,6 @@
 
 @property (nonatomic, strong) NSString *crashPath;
 
+@property (nonatomic, strong) NSString *emailAddress;
+
 @end
