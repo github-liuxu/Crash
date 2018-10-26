@@ -74,6 +74,8 @@
 - (void)leftNavButtonClick:(UIButton *)button {
     if ([self.delegate respondsToSelector:@selector(backClick)]) {
         [self.delegate backClick];
+    } else {
+        [self dismissViewControllerAnimated:YES completion:NULL];
     }
 }
 
