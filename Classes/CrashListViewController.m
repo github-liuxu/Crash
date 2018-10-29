@@ -8,9 +8,11 @@
 
 #import "CrashListViewController.h"
 #import "CrashTextViewController.h"
-@import MessageUI;
+#import "SKPSMTPMessage.h"
+#import "NSData+Base64Additions.h"
+#import <MessageUI/MFMailComposeViewController.h>
 
-@interface CrashListViewController ()<MFMailComposeViewControllerDelegate,MFMailComposeViewControllerDelegate>
+@interface CrashListViewController ()<MFMailComposeViewControllerDelegate,MFMailComposeViewControllerDelegate,SKPSMTPMessageDelegate>
 
 @property (nonatomic, strong) NSMutableArray *dataSource;
 
@@ -21,6 +23,14 @@
 @end
 
 @implementation CrashListViewController
+
+- (instancetype)init {
+    if (self = [super init]) {
+        self.relayHost = @"smtp.163.com";
+        self.subject = @"Crash Report";
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -42,15 +52,6 @@
     NSEnumerator *enumerator = [self.dataSource reverseObjectEnumerator];
     self.dataSource = [NSMutableArray arrayWithArray:enumerator.allObjects];
     [self.tableView reloadData];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    if ([MFMailComposeViewController canSendMail]) {
-        self.emailButton.enabled = YES;
-    } else {
-        self.emailButton.enabled = NO;
-    }
 }
 
 - (UIView *)leftNavigationBarItemView {
@@ -80,22 +81,65 @@
 }
 
 - (void)rightNavButtonClick:(UIButton *)button {
-    MFMailComposeViewController *mfMail = [MFMailComposeViewController new];
-    mfMail.mailComposeDelegate = self;
-    if (self.emailAddress) {
-        [mfMail setToRecipients:@[self.emailAddress]];
-    }
-    [mfMail setSubject:@"Crash"];
-    [mfMail setMessageBody:@"Bug files!" isHTML:NO];
+    if ([MFMailComposeViewController canSendMail]) {
+        MFMailComposeViewController *mfMail = [MFMailComposeViewController new];
+        mfMail.mailComposeDelegate = self;
+        if (self.emailAddress) {
+            [mfMail setToRecipients:@[self.emailAddress]];
+        }
+        [mfMail setSubject:@"Crash"];
+        [mfMail setMessageBody:@"Bug files!" isHTML:NO];
+        
+        for (int i = 0; i < self.dataSource.count; i++) {
+            NSData *log = [NSData dataWithContentsOfFile:self.dataSource[i]];
+            [mfMail addAttachmentData:log mimeType:@"log" fileName:[self.dataSource[i] lastPathComponent]];
+        }
+        
+        self.definesPresentationContext = YES;
+        self.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+        [self presentViewController:mfMail animated:YES completion:NULL];
+    } else {
+        if (self.emailFrom && self.emailAddress && self.login && self.pass) {
+            SKPSMTPMessage *testMsg = [[SKPSMTPMessage alloc] init];
+            testMsg.fromEmail = self.emailFrom;
+            testMsg.toEmail = self.emailAddress;
+            testMsg.relayHost = self.relayHost;
+            testMsg.requiresAuth = YES;
+            if (testMsg.requiresAuth) {
+                testMsg.login = self.login;
+                testMsg.pass = self.pass;
+            }
+            testMsg.wantsSecure = YES; // smtp.gmail.com doesn't work without TLS!
+            testMsg.subject = self.subject;
+            testMsg.delegate = self;
+            NSString *content = [NSString stringWithCString:"Bug files!" encoding:NSUTF8StringEncoding];
+            NSMutableArray *array = [NSMutableArray array];
+            NSDictionary *plainPart = @{kSKPSMTPPartContentTypeKey : @"text/plain", kSKPSMTPPartMessageKey : content, kSKPSMTPPartContentTransferEncodingKey : @"8bit"};
+            [array addObject:plainPart];
     
-    for (int i = 0; i < self.dataSource.count; i++) {
-        NSData *log = [NSData dataWithContentsOfFile:self.dataSource[i]];
-        [mfMail addAttachmentData:log mimeType:@"log" fileName:[self.dataSource[i] lastPathComponent]];
+            for (int i = 0; i < self.dataSource.count; i++) {
+                NSString *filePath = self.dataSource[i];
+                NSData *fileData = [NSData dataWithContentsOfFile:filePath];
+                NSString *keys = [NSString stringWithFormat:@"text/directory;\r\n\tx-unix-mode=0644;\r\n\tname=\"%@\"",filePath.lastPathComponent];
+                NSString *attachment = [NSString stringWithFormat:@"attachment;\r\n\tfilename=\"%@\"",filePath.lastPathComponent];
+                NSDictionary *filePart = [NSDictionary dictionaryWithObjectsAndKeys:keys,kSKPSMTPPartContentTypeKey,
+                                         attachment,kSKPSMTPPartContentDispositionKey,[fileData encodeBase64ForData],kSKPSMTPPartMessageKey,@"base64",kSKPSMTPPartContentTransferEncodingKey,nil];
+                [array addObject:filePart];
+            }
+            
+            
+            
+            testMsg.parts = array;
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                [testMsg send];
+            });
+        } else {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"请配置邮箱" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:NULL];
+            [alert addAction:action];
+            [self presentViewController:alert animated:YES completion:NULL];
+        }
     }
-    
-    self.definesPresentationContext = YES;
-    self.modalPresentationStyle = UIModalPresentationOverCurrentContext;
-    [self presentViewController:mfMail animated:YES completion:NULL];
     
 }
 
@@ -113,6 +157,11 @@
     CrashTextViewController *ct = [CrashTextViewController new];
     ct.crashPath = self.dataSource[indexPath.row];
     ct.emailAddress = self.emailAddress;
+    ct.emailFrom = self.emailFrom;
+    ct.relayHost = self.relayHost;
+    ct.subject = self.subject;
+    ct.login = self.login;
+    ct.pass = self.pass;
     [self.navigationController pushViewController:ct animated:YES];
 }
 
@@ -151,6 +200,20 @@
         [alert addAction:action];
         [self presentViewController:alert animated:YES completion:NULL];
     }
+}
+#pragma - mark SKPSMTPMessage
+-(void)messageSent:(SKPSMTPMessage *)message {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"发送成功" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:NULL];
+    [alert addAction:action];
+    [self presentViewController:alert animated:YES completion:NULL];
+}
+
+-(void)messageFailed:(SKPSMTPMessage *)message error:(NSError *)error {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"发送失败" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:NULL];
+    [alert addAction:action];
+    [self presentViewController:alert animated:YES completion:NULL];
 }
 
 - (void)didReceiveMemoryWarning {

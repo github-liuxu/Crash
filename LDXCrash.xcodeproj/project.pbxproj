@@ -16,6 +16,11 @@
 		0C36265720A48A130011CBA8 /* CrashUncaughtExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C36265520A48A130011CBA8 /* CrashUncaughtExceptionHandler.m */; };
 		0C36265C20A4A7170011CBA8 /* CrashListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C36265B20A4A7170011CBA8 /* CrashListViewController.m */; };
 		0C36265F20A4AC9F0011CBA8 /* CrashTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C36265E20A4AC9F0011CBA8 /* CrashTextViewController.m */; };
+		B5BBBE802186C37F0068B396 /* NSStream+SKPSMTPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BBBE772186C37F0068B396 /* NSStream+SKPSMTPExtensions.m */; };
+		B5BBBE812186C37F0068B396 /* SKPSMTPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BBBE7B2186C37F0068B396 /* SKPSMTPMessage.m */; };
+		B5BBBE822186C37F0068B396 /* NSData+Base64Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BBBE7D2186C37F0068B396 /* NSData+Base64Additions.m */; };
+		B5BBBE832186C37F0068B396 /* Base64Transcoder.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BBBE7E2186C37F0068B396 /* Base64Transcoder.m */; };
+		B5BBBE842186C37F0068B396 /* HSK_CFUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BBBE7F2186C37F0068B396 /* HSK_CFUtilities.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +40,16 @@
 		0C36265B20A4A7170011CBA8 /* CrashListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CrashListViewController.m; sourceTree = "<group>"; };
 		0C36265D20A4AC9F0011CBA8 /* CrashTextViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CrashTextViewController.h; sourceTree = "<group>"; };
 		0C36265E20A4AC9F0011CBA8 /* CrashTextViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CrashTextViewController.m; sourceTree = "<group>"; };
+		B5BBBE762186C37F0068B396 /* NSData+Base64Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64Additions.h"; sourceTree = "<group>"; };
+		B5BBBE772186C37F0068B396 /* NSStream+SKPSMTPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSStream+SKPSMTPExtensions.m"; sourceTree = "<group>"; };
+		B5BBBE782186C37F0068B396 /* SKPSMTPMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKPSMTPMessage.h; sourceTree = "<group>"; };
+		B5BBBE792186C37F0068B396 /* Base64Transcoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64Transcoder.h; sourceTree = "<group>"; };
+		B5BBBE7A2186C37F0068B396 /* HSK_CFUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSK_CFUtilities.h; sourceTree = "<group>"; };
+		B5BBBE7B2186C37F0068B396 /* SKPSMTPMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKPSMTPMessage.m; sourceTree = "<group>"; };
+		B5BBBE7C2186C37F0068B396 /* NSStream+SKPSMTPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSStream+SKPSMTPExtensions.h"; sourceTree = "<group>"; };
+		B5BBBE7D2186C37F0068B396 /* NSData+Base64Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64Additions.m"; sourceTree = "<group>"; };
+		B5BBBE7E2186C37F0068B396 /* Base64Transcoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64Transcoder.m; sourceTree = "<group>"; };
+		B5BBBE7F2186C37F0068B396 /* HSK_CFUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSK_CFUtilities.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +99,7 @@
 		0C36265420A48A130011CBA8 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				B5BBBE752186C37F0068B396 /* SMTP */,
 				0C36265520A48A130011CBA8 /* CrashUncaughtExceptionHandler.m */,
 				0C36265620A48A130011CBA8 /* CrashUncaughtExceptionHandler.h */,
 				0C36265D20A4AC9F0011CBA8 /* CrashTextViewController.h */,
@@ -92,6 +108,23 @@
 				0C36265B20A4A7170011CBA8 /* CrashListViewController.m */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		B5BBBE752186C37F0068B396 /* SMTP */ = {
+			isa = PBXGroup;
+			children = (
+				B5BBBE762186C37F0068B396 /* NSData+Base64Additions.h */,
+				B5BBBE772186C37F0068B396 /* NSStream+SKPSMTPExtensions.m */,
+				B5BBBE782186C37F0068B396 /* SKPSMTPMessage.h */,
+				B5BBBE792186C37F0068B396 /* Base64Transcoder.h */,
+				B5BBBE7A2186C37F0068B396 /* HSK_CFUtilities.h */,
+				B5BBBE7B2186C37F0068B396 /* SKPSMTPMessage.m */,
+				B5BBBE7C2186C37F0068B396 /* NSStream+SKPSMTPExtensions.h */,
+				B5BBBE7D2186C37F0068B396 /* NSData+Base64Additions.m */,
+				B5BBBE7E2186C37F0068B396 /* Base64Transcoder.m */,
+				B5BBBE7F2186C37F0068B396 /* HSK_CFUtilities.m */,
+			);
+			path = SMTP;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -164,10 +197,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5BBBE842186C37F0068B396 /* HSK_CFUtilities.m in Sources */,
 				0C36265C20A4A7170011CBA8 /* CrashListViewController.m in Sources */,
+				B5BBBE802186C37F0068B396 /* NSStream+SKPSMTPExtensions.m in Sources */,
+				B5BBBE812186C37F0068B396 /* SKPSMTPMessage.m in Sources */,
+				B5BBBE832186C37F0068B396 /* Base64Transcoder.m in Sources */,
 				0C36264120A489EE0011CBA8 /* ViewController.m in Sources */,
 				0C36264C20A489EF0011CBA8 /* main.m in Sources */,
 				0C36265F20A4AC9F0011CBA8 /* CrashTextViewController.m in Sources */,
+				B5BBBE822186C37F0068B396 /* NSData+Base64Additions.m in Sources */,
 				0C36263E20A489EE0011CBA8 /* AppDelegate.m in Sources */,
 				0C36265720A48A130011CBA8 /* CrashUncaughtExceptionHandler.m in Sources */,
 			);
@@ -310,7 +348,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z5E3E2D8FE;
+				DEVELOPMENT_TEAM = ZB978L2WLM;
 				INFOPLIST_FILE = "$(SRCROOT)/LDXCrash/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -328,7 +366,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z5E3E2D8FE;
+				DEVELOPMENT_TEAM = ZB978L2WLM;
 				INFOPLIST_FILE = "$(SRCROOT)/LDXCrash/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = (
