@@ -13,9 +13,6 @@
 		0C36264620A489EF0011CBA8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C36264520A489EF0011CBA8 /* Assets.xcassets */; };
 		0C36264920A489EF0011CBA8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C36264720A489EF0011CBA8 /* LaunchScreen.storyboard */; };
 		0C36264C20A489EF0011CBA8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C36264B20A489EF0011CBA8 /* main.m */; };
-		0C36265720A48A130011CBA8 /* CrashUncaughtExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C36265520A48A130011CBA8 /* CrashUncaughtExceptionHandler.m */; };
-		0C36265C20A4A7170011CBA8 /* CrashListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C36265B20A4A7170011CBA8 /* CrashListViewController.m */; };
-		0C36265F20A4AC9F0011CBA8 /* CrashTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C36265E20A4AC9F0011CBA8 /* CrashTextViewController.m */; };
 		0C69D55924C318500010B0C6 /* LDXCrashLib.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C69D55724C318500010B0C6 /* LDXCrashLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C69D55C24C318500010B0C6 /* LDXCrashLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C69D55524C318500010B0C6 /* LDXCrashLib.framework */; };
 		0C69D55D24C318500010B0C6 /* LDXCrashLib.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C69D55524C318500010B0C6 /* LDXCrashLib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -38,11 +35,6 @@
 		0C69D57524C319710010B0C6 /* CrashUncaughtExceptionHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C36265620A48A130011CBA8 /* CrashUncaughtExceptionHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C69D57624C319730010B0C6 /* CrashTextViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C36265D20A4AC9F0011CBA8 /* CrashTextViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C69D57724C319760010B0C6 /* CrashListViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C36265A20A4A7170011CBA8 /* CrashListViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B5BBBE802186C37F0068B396 /* NSStream+SKPSMTPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BBBE772186C37F0068B396 /* NSStream+SKPSMTPExtensions.m */; };
-		B5BBBE812186C37F0068B396 /* SKPSMTPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BBBE7B2186C37F0068B396 /* SKPSMTPMessage.m */; };
-		B5BBBE822186C37F0068B396 /* NSData+Base64Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BBBE7D2186C37F0068B396 /* NSData+Base64Additions.m */; };
-		B5BBBE832186C37F0068B396 /* Base64Transcoder.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BBBE7E2186C37F0068B396 /* Base64Transcoder.m */; };
-		B5BBBE842186C37F0068B396 /* HSK_CFUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BBBE7F2186C37F0068B396 /* HSK_CFUtilities.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -310,17 +302,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5BBBE842186C37F0068B396 /* HSK_CFUtilities.m in Sources */,
-				0C36265C20A4A7170011CBA8 /* CrashListViewController.m in Sources */,
-				B5BBBE802186C37F0068B396 /* NSStream+SKPSMTPExtensions.m in Sources */,
-				B5BBBE812186C37F0068B396 /* SKPSMTPMessage.m in Sources */,
-				B5BBBE832186C37F0068B396 /* Base64Transcoder.m in Sources */,
 				0C36264120A489EE0011CBA8 /* ViewController.m in Sources */,
 				0C36264C20A489EF0011CBA8 /* main.m in Sources */,
-				0C36265F20A4AC9F0011CBA8 /* CrashTextViewController.m in Sources */,
-				B5BBBE822186C37F0068B396 /* NSData+Base64Additions.m in Sources */,
 				0C36263E20A489EE0011CBA8 /* AppDelegate.m in Sources */,
-				0C36265720A48A130011CBA8 /* CrashUncaughtExceptionHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
